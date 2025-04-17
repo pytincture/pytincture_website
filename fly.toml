@@ -2,7 +2,7 @@ app = "pytincture-website"
 primary_region = "iad"
 
 [build]
-  builder = "docker"
+  dockerfile = "./Dockerfile"
 
 [http_service]
   internal_port = 8000
