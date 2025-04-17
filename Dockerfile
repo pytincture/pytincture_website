@@ -1,12 +1,11 @@
-FROM python:3.12-slim
+FROM httpd:2.4
 
-WORKDIR /app
+# Copy Apache configuration
+COPY apache.conf /usr/local/apache2/conf/httpd.conf
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy website files
+COPY htdocs/ /usr/local/apache2/htdocs/
 
-COPY . .
+EXPOSE 80
 
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["httpd-foreground"]
