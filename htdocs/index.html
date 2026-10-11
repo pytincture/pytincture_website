@@ -34,7 +34,7 @@
             <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-nav>
                 <a href="#framework">Framework</a>
                 <a href="#architecture">Architecture</a>
-                <a href="#ui">dhxpyt UI</a>
+                <a href="#ui">wapyt UI</a>
                 <a href="#quickstart">Get started</a>
                 <a href="#docs">Docs</a>
                 <a class="nav-github" href="https://github.com/pytincture/pytincture" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
@@ -86,16 +86,16 @@
                         <div class="studio__code" aria-label="Browser Python example">
                             <div class="studio__code-title"><span>app.py</span><small>browser</small></div>
                             <pre><code><span><i>1</i><b>import</b> json</span>
-<span><i>2</i><b>from</b> dhxpyt.grid <b>import</b> GridConfig</span>
+<span><i>2</i><b>from</b> wapyt <b>import</b> DataTable, DataTableConfig</span>
 <span><i>3</i><b>from</b> py_ui_data <b>import</b> py_ui_data</span>
 <span><i>4</i></span>
 <span class="studio-line studio-line--call"><i>5</i>data = json.loads(<u>py_ui_data().dataset()</u>)</span>
-<span><i>6</i>grid_config = GridConfig(</span>
-<span><i>7</i>    columns=columns, data=data</span>
-<span><i>8</i>)</span>
-<span class="studio-line studio-line--build"><i>9</i>self.book_grid = self.tabbar.<u>add_grid</u>(</span>
-<span><i>10</i>    id=<em>"tab1"</em>, grid_config=grid_config</span>
-<span><i>11</i>)</span></code></pre>
+<span><i>6</i>config = DataTableConfig(columns=columns)</span>
+<span><i>7</i>cell = self.tabs.get_cell(<em>"grid"</em>)</span>
+<span class="studio-line studio-line--build"><i>8</i>self.book_grid = <u>DataTable</u>(</span>
+<span><i>9</i>    config, container=cell</span>
+<span><i>10</i>)</span>
+<span><i>11</i>self.book_grid.set_rows(data)</span></code></pre>
                         </div>
 
                         <div class="studio__preview" inert aria-hidden="true">
@@ -242,21 +242,21 @@ self.badge.set_value(status[<em>"state"</em>])</code></pre></div>
             <div class="shell">
                 <div class="section-heading section-heading--split">
                     <div><p class="eyebrow"><span></span> Optional Python UI toolkit</p><h2>Python-first does not mean primitive UI.</h2></div>
-                    <p>dhxpyt wraps DHTMLX components for Python-first layout, configuration, and events inside Pytincture applications.</p>
+                    <p>wapyt is the MIT-licensed widgetset built for Pytincture: layouts, tables, forms, charts, and chat declared in Python and rendered in the browser.</p>
                 </div>
 
                 <div class="component-lab" data-showcase>
                     <div class="component-lab__nav">
-                        <div class="component-lab__identity"><span>Component lab</span><small>dhxpyt 0.9.16</small></div>
-                        <div class="component-lab__tabs" role="tablist" aria-label="dhxpyt component previews">
-                            <button id="showcase-tab-grid" type="button" role="tab" aria-controls="showcase-panel-grid" aria-selected="true" data-showcase-tab="grid">Grid</button>
+                        <div class="component-lab__identity"><span>Component lab</span><small>wapyt 0.2</small></div>
+                        <div class="component-lab__tabs" role="tablist" aria-label="wapyt component previews">
+                            <button id="showcase-tab-grid" type="button" role="tab" aria-controls="showcase-panel-grid" aria-selected="true" data-showcase-tab="grid">DataTable</button>
                             <button id="showcase-tab-chart" type="button" role="tab" aria-controls="showcase-panel-chart" aria-selected="false" tabindex="-1" data-showcase-tab="chart">Chart</button>
                             <button id="showcase-tab-form" type="button" role="tab" aria-controls="showcase-panel-form" aria-selected="false" tabindex="-1" data-showcase-tab="form">Form</button>
                             <button id="showcase-tab-chat" type="button" role="tab" aria-controls="showcase-panel-chat" aria-selected="false" tabindex="-1" data-showcase-tab="chat">Chat</button>
                         </div>
                     </div>
                     <div class="component-lab__stage">
-                        <div class="showcase-panel" id="showcase-panel-grid" role="tabpanel" aria-labelledby="showcase-tab-grid" aria-label="Illustrative dhxpyt grid example" tabindex="0" data-showcase-panel="grid">
+                        <div class="showcase-panel" id="showcase-panel-grid" role="tabpanel" aria-labelledby="showcase-tab-grid" aria-label="Illustrative wapyt data table example" tabindex="0" data-showcase-panel="grid">
                             <div class="lab-toolbar" inert><div><strong>Application modules</strong><span>Example workspace</span></div><label><span>⌕</span><input type="text" placeholder="Filter modules" aria-label="Filter example modules"></label><button type="button">+ Add module</button></div>
                             <div class="lab-grid" inert><div class="lab-grid__head"><span>Module</span><span>Runtime</span><span>Boundary</span><span>Status</span></div><div><span><i class="dot dot--blue"></i><b>workspace.py</b></span><span>Browser</span><span>—</span><em>Running</em></div><div><span><i class="dot dot--coral"></i><b>reports.py</b></span><span>Server</span><span>BFF</span><em>Ready</em></div><div><span><i class="dot dot--lime"></i><b>widget.py</b></span><span>Package</span><span>—</span><em>Resolved</em></div><div><span><i class="dot dot--yellow"></i><b>auth.py</b></span><span>Server</span><span>Policy</span><em>Protected</em></div></div>
                         </div>
@@ -266,24 +266,24 @@ self.badge.set_value(status[<em>"state"</em>])</code></pre></div>
                             <div class="lab-chart" aria-label="Illustrative application lifecycle bar chart"><div><span>load runtime</span><i style="--value:68%"><b></b></i><em>browser</em></div><div><span>install packages</span><i style="--value:88%"><b></b></i><em>browser</em></div><div><span>import app</span><i style="--value:53%"><b></b></i><em>browser</em></div><div><span>authorize BFF</span><i class="service" style="--value:39%"><b></b></i><em>server</em></div><div><span>render UI</span><i style="--value:73%"><b></b></i><em>browser</em></div></div>
                         </div>
 
-                        <div class="showcase-panel" id="showcase-panel-form" role="tabpanel" aria-labelledby="showcase-tab-form" aria-label="Illustrative dhxpyt form example" tabindex="0" data-showcase-panel="form">
-                            <div class="lab-form" inert><div class="lab-form__intro"><span>New application</span><h3>Configure a workspace</h3><p>Form, combobox, datepicker, and message components composed from Python.</p></div><form><label>Application name<input type="text" value="Operations workspace"></label><label>Delivery mode<select><option>Service — FastAPI + BFF</option></select></label><div><label>Region<select><option>US East</option></select></label><label>Launch date<input type="text" value="2026-09-28"></label></div><label class="lab-check"><input type="checkbox" checked> Require authenticated access</label><button type="button">Create application</button></form></div>
+                        <div class="showcase-panel" id="showcase-panel-form" role="tabpanel" aria-labelledby="showcase-tab-form" aria-label="Illustrative wapyt form example" tabindex="0" data-showcase-panel="form">
+                            <div class="lab-form" inert><div class="lab-form__intro"><span>New application</span><h3>Configure a workspace</h3><p>Text, select, date, and checkbox fields with client-side validation, composed from Python.</p></div><form><label>Application name<input type="text" value="Operations workspace"></label><label>Delivery mode<select><option>Service — FastAPI + BFF</option></select></label><div><label>Region<select><option>US East</option></select></label><label>Launch date<input type="text" value="2026-09-28"></label></div><label class="lab-check"><input type="checkbox" checked> Require authenticated access</label><button type="button">Create application</button></form></div>
                         </div>
 
-                        <div class="showcase-panel" id="showcase-panel-chat" role="tabpanel" aria-labelledby="showcase-tab-chat" aria-label="Illustrative dhxpyt chat example" tabindex="0" data-showcase-panel="chat">
+                        <div class="showcase-panel" id="showcase-panel-chat" role="tabpanel" aria-labelledby="showcase-tab-chat" aria-label="Illustrative wapyt chat example" tabindex="0" data-showcase-panel="chat">
                             <div class="lab-chat" inert><aside><strong>Assistant sessions</strong><span class="active"><i></i> Deployment review</span><span><i></i> Dataset analysis</span><span><i></i> Release checklist</span></aside><div><div class="chat-heading"><strong>Deployment review</strong><span><i></i> streaming</span></div><div class="chat-thread"><p class="chat-user">Check whether the application is ready to receive traffic.</p><p class="chat-assistant"><span>Py</span><b>Readiness is green.</b><br><code>/readyz</code> reports the modules path, frontend runtime, and configured stores are available.</p></div><div class="chat-input">Ask the application… <button type="button">↑</button></div></div></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="module-mosaic" aria-label="dhxpyt module groups">
-                    <article><span>Explore data</span><strong>Grid · Chart · Tree · Listbox · Pagination</strong></article>
-                    <article><span>Collect input</span><strong>Form · Combobox · Calendar · Timepicker · Colorpicker</strong></article>
-                    <article><span>Structure apps</span><strong>Layout · Sidebar · Tabbar · Toolbar · Menu · Window · Ribbon · Popup</strong></article>
-                    <article><span>Build workflows</span><strong>Kanban · Cardflow · Cardpanel · Chat · Message · Slider</strong></article>
-                    <a href="https://github.com/pytincture/dhx_pytincture_widgetset" target="_blank" rel="noreferrer"><b>24 modules</b><span>Explore the complete widgetset ↗</span></a>
+                <div class="module-mosaic" aria-label="wapyt widget groups">
+                    <article><span>Explore data</span><strong>DataTable · Chart · Tree · Listbox · Pagination · Scheduler</strong></article>
+                    <article><span>Collect input</span><strong>Form · ModalWindow · Popup · Message · File transfer</strong></article>
+                    <article><span>Structure apps</span><strong>Layout · Sidebar · TabWidget · Toolbar · MenuBar · ContextMenu · Window</strong></article>
+                    <article><span>Build workflows</span><strong>Kanban · CardPanel · ResourceBoard · Chat · Terminal · MediaPlayer · ProgressBar</strong></article>
+                    <a href="https://github.com/WAwesome-AI/wa_pytincture_widgetset/wiki/Widget-Catalog" target="_blank" rel="noreferrer"><b>26 widgets</b><span>Browse the widget catalog ↗</span></a>
                 </div>
-                <p class="license-note"><strong>Licensing:</strong> Pytincture core is MIT licensed. dhxpyt is GPL-2.0; bundled DHTMLX assets may require GPL, evaluation, or commercial licensing.</p>
+                <p class="license-note"><strong>Licensing:</strong> Pytincture core and wapyt are both MIT licensed. Third-party scripts bundled with wapyt keep their own open-source licenses.</p>
             </div>
         </section>
 
@@ -315,7 +315,7 @@ self.badge.set_value(status[<em>"state"</em>])</code></pre></div>
                     <h2>From three Python files to a running browser UI.</h2>
                     <p>Configure the service, define a browser entry point, and declare the UI package Pytincture should resolve.</p>
                     <div class="preview-install"><span>Preview the 1.0 API</span><div><code>python -m pip install pytincture==1.0.0rc2</code><button type="button" data-copy="python -m pip install pytincture==1.0.0rc2" aria-label="Copy preview installation command"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="6" width="9" height="10" rx="1.5"></rect><path d="M5 13H4a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 4 2h8a1.5 1.5 0 0 1 1.5 1.5V4"></path></svg></button></div><small>Requires CPython 3.13 or 3.14. Current stable remains 0.10.7; pin the preview exactly while evaluating 1.0.</small></div>
-                    <ol><li><span>01</span>Create the service configuration</li><li><span>02</span>Write the browser entry point</li><li><span>03</span>Declare the widgetset version</li><li><span>04</span><code>python -m uvicorn service:app --port 8070</code></li></ol>
+                    <ol><li><span>01</span>Create the service configuration</li><li><span>02</span>Write the browser entry point</li><li><span>03</span>Declare the widgetset version</li><li><span>04</span><code>python -m pip download --no-deps wapyt==0.2.0.dev1 -d .</code></li><li><span>05</span><code>python -m uvicorn service:app --port 8070</code></li></ol>
                     <a class="text-link" href="https://github.com/pytincture/pytincture/tree/v1.0.0rc2/examples/quickstart" target="_blank" rel="noreferrer">Open the maintained quickstart <span aria-hidden="true">↗</span></a>
                 </div>
 
@@ -323,8 +323,8 @@ self.badge.set_value(status[<em>"state"</em>])</code></pre></div>
                     <div class="editor-tabs"><div class="editor-tabs__list" role="tablist" aria-label="Quickstart files"><button id="code-tab-service" type="button" role="tab" aria-controls="code-panel-service" aria-selected="true" data-code-tab="service">service.py</button><button id="code-tab-hello" type="button" role="tab" aria-controls="code-panel-hello" aria-selected="false" tabindex="-1" data-code-tab="hello">hello.py</button><button id="code-tab-widget" type="button" role="tab" aria-controls="code-panel-widget" aria-selected="false" tabindex="-1" data-code-tab="widget">widget.py</button></div><button class="editor-copy" type="button" data-copy-active aria-label="Copy current code"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="6" width="9" height="10" rx="1.5"></rect><path d="M5 13H4a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 4 2h8a1.5 1.5 0 0 1 1.5 1.5V4"></path></svg><span>Copy</span></button></div>
                     <div class="editor-body">
                         <div class="editor-panel" id="code-panel-service" role="tabpanel" aria-labelledby="code-tab-service" tabindex="0" data-code-panel="service"><pre><code><span><i>1</i><b>from</b> pathlib <b>import</b> Path</span><span><i>2</i><b>from</b> pytincture <b>import</b> PytinctureConfig, create_app</span><span><i>3</i></span><span><i>4</i>HERE = Path(__file__).resolve().parent</span><span><i>5</i></span><span><i>6</i>app = create_app(</span><span><i>7</i>    PytinctureConfig(</span><span><i>8</i>        modules_path=str(HERE),</span><span><i>9</i>        default_application=<em>"hello"</em>,</span><span><i>10</i>    )</span><span><i>11</i>)</span></code></pre></div>
-                        <div class="editor-panel" id="code-panel-hello" role="tabpanel" aria-labelledby="code-tab-hello" tabindex="0" data-code-panel="hello"><pre><code><span><i>1</i><b>import</b> js</span><span><i>2</i><b>import</b> widget</span><span><i>3</i><b>from</b> dhxpyt.layout <b>import</b> MainWindow</span><span><i>4</i></span><span><i>5</i><b>class</b> <u>hello</u>(MainWindow):</span><span><i>6</i>    <b>def</b> <u>load_ui</u>(self):</span><span><i>7</i>        js.document.getElementById(<em>"maindiv"</em>).innerHTML = (</span><span><i>8</i>            <em>"&lt;h1&gt;Hello from Pytincture&lt;/h1&gt;"</em></span><span><i>9</i>            <em>"&lt;p&gt;Python is running in your browser.&lt;/p&gt;"</em></span><span><i>10</i>        )</span></code></pre></div>
-                        <div class="editor-panel" id="code-panel-widget" role="tabpanel" aria-labelledby="code-tab-widget" tabindex="0" data-code-panel="widget"><pre><code><span><i>1</i>__widgetset__ = <em>"dhxpyt"</em></span><span><i>2</i>__version__ = <em>"0.9.16"</em></span></code></pre></div>
+                        <div class="editor-panel" id="code-panel-hello" role="tabpanel" aria-labelledby="code-tab-hello" tabindex="0" data-code-panel="hello"><pre><code><span><i>1</i><b>import</b> js</span><span><i>2</i><b>import</b> widget</span><span><i>3</i><b>from</b> wapyt <b>import</b> MainWindow</span><span><i>4</i></span><span><i>5</i><b>class</b> <u>hello</u>(MainWindow):</span><span><i>6</i>    <b>def</b> <u>load_ui</u>(self):</span><span><i>7</i>        js.document.getElementById(<em>"maindiv"</em>).innerHTML = (</span><span><i>8</i>            <em>"&lt;h1&gt;Hello from Pytincture&lt;/h1&gt;"</em></span><span><i>9</i>            <em>"&lt;p&gt;Python is running in your browser.&lt;/p&gt;"</em></span><span><i>10</i>        )</span></code></pre></div>
+                        <div class="editor-panel" id="code-panel-widget" role="tabpanel" aria-labelledby="code-tab-widget" tabindex="0" data-code-panel="widget"><pre><code><span><i>1</i>__widgetset__ = <em>"wapyt"</em></span><span><i>2</i>__version__ = <em>"0.2.0.dev1"</em></span></code></pre></div>
                         <div class="editor-result"><div class="editor-result__bar"><i></i><i></i><i></i><span>localhost:8070/hello</span></div><div><span class="wordmark__mark" aria-hidden="true">Py</span><small>Browser output</small><strong>Hello from Pytincture</strong><p>Python is running in your browser.</p></div></div>
                     </div>
                     <div class="editor-footer"><span><i></i> service running</span><code>localhost:8070/hello</code></div>
@@ -354,13 +354,13 @@ self.badge.set_value(status[<em>"state"</em>])</code></pre></div>
 
         <section class="final-cta">
             <div class="final-cta__shape" aria-hidden="true"></div>
-            <div class="shell final-cta__inner"><div><p class="eyebrow"><span></span> Start in Python</p><h2>Build the browser in Python. Keep trust on the server.</h2></div><div><p>Start with the framework, then bring in BFF access, authentication, and dhxpyt as the application grows.</p><div><a class="button button--light" href="#quickstart">Start building <span>→</span></a><a class="button button--dark-outline" href="https://github.com/pytincture/pytincture" target="_blank" rel="noreferrer">View the source <span>↗</span></a></div></div></div>
+            <div class="shell final-cta__inner"><div><p class="eyebrow"><span></span> Start in Python</p><h2>Build the browser in Python. Keep trust on the server.</h2></div><div><p>Start with the framework, then bring in BFF access, authentication, and wapyt as the application grows.</p><div><a class="button button--light" href="#quickstart">Start building <span>→</span></a><a class="button button--dark-outline" href="https://github.com/pytincture/pytincture" target="_blank" rel="noreferrer">View the source <span>↗</span></a></div></div></div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <div class="shell footer-main"><div><a class="wordmark wordmark--footer" href="#top"><span class="wordmark__mark" aria-hidden="true">Py</span><span>Pytincture</span></a><p>A Python framework for browser applications.</p></div><div><strong>Framework</strong><a href="#framework">Capabilities</a><a href="#architecture">Architecture</a><a href="#delivery">Delivery modes</a></div><div><strong>Build</strong><a href="#quickstart">Quickstart</a><a href="#ui">dhxpyt</a><a href="#docs">Documentation</a></div><div><strong>Source</strong><a href="https://github.com/pytincture/pytincture" target="_blank" rel="noreferrer">Core repository</a><a href="https://github.com/pytincture/dhx_pytincture_widgetset" target="_blank" rel="noreferrer">dhxpyt repository</a><a href="https://pypi.org/project/pytincture/" target="_blank" rel="noreferrer">PyPI</a></div></div>
-        <div class="shell footer-bottom"><span>© <span data-year>2026</span> Pytincture contributors.</span><span>Core: MIT · dhxpyt: GPL-2.0 · DHTMLX terms apply</span></div>
+        <div class="shell footer-main"><div><a class="wordmark wordmark--footer" href="#top"><span class="wordmark__mark" aria-hidden="true">Py</span><span>Pytincture</span></a><p>A Python framework for browser applications.</p></div><div><strong>Framework</strong><a href="#framework">Capabilities</a><a href="#architecture">Architecture</a><a href="#delivery">Delivery modes</a></div><div><strong>Build</strong><a href="#quickstart">Quickstart</a><a href="#ui">wapyt</a><a href="#docs">Documentation</a></div><div><strong>Source</strong><a href="https://github.com/pytincture/pytincture" target="_blank" rel="noreferrer">Core repository</a><a href="https://github.com/WAwesome-AI/wa_pytincture_widgetset" target="_blank" rel="noreferrer">wapyt repository</a><a href="https://pypi.org/project/pytincture/" target="_blank" rel="noreferrer">PyPI</a></div></div>
+        <div class="shell footer-bottom"><span>© <span data-year>2026</span> Pytincture contributors.</span><span>Core: MIT · wapyt: MIT</span></div>
     </footer>
 
     <div class="toast" role="status" aria-live="polite" data-toast>Copied to clipboard</div>
