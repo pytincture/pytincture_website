@@ -138,7 +138,7 @@ app = create_app(
 )`,
         hello: `import js
 import widget
-from dhxpyt.layout import MainWindow
+from wapyt import MainWindow
 
 class hello(MainWindow):
     def load_ui(self):
@@ -146,8 +146,8 @@ class hello(MainWindow):
             "<h1>Hello from Pytincture</h1>"
             "<p>Python is running in your browser.</p>"
         )`,
-        widget: `__widgetset__ = "dhxpyt"
-__version__ = "0.9.16"`,
+        widget: `__widgetset__ = "wapyt"
+__version__ = "0.2.0.dev1"`,
     };
 
     let activeCode = "service";
