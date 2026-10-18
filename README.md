@@ -1,38 +1,26 @@
-# Pytincture Website
+# Pytincture website
 
-A Python/FastAPI-based website configured for deployment on Fly.io.
+Static Pytincture 1.0 release website, served by Apache on Fly.io. The framework
+and Lambda commands are documented in the linked, versioned framework guides.
 
-## Setup
+## Preview locally
 
-1. Install Python 3.12+ and pip
-2. Clone this repository
-3. Create a virtual environment: `python -m venv venv`
-4. Activate the virtual environment:
-   - Windows: `venv\Scripts\activate`
-   - Unix/Linux/Mac: `source venv/bin/activate`
-5. Install dependencies: `pip install -r requirements.txt`
-6. Run locally: `python main.py`
+```sh
+python3 -m http.server 8080 --bind 127.0.0.1 --directory htdocs
+```
 
-## Deploy to Fly.io
+Open http://127.0.0.1:8080. No Python web framework is needed for this site.
+`htdocs/index.html`, `htdocs/css/pytincture-framework.css` and
+`htdocs/js/pytincture-site.js` contain the page, styles and interactions.
 
-1. Install Flyctl: `curl -L https://fly.io/install.sh | sh`
-2. Sign up/login: `flyctl auth signup` or `flyctl auth login`
-3. Update `fly.toml` with your unique app name
-4. Deploy: `flyctl deploy`
+## Release and deployment
 
-## Project Structure
+Review the 1.0 content locally. Publish the corresponding framework tag and
+registry artifacts before deploying this website: the installation command and
+documentation URLs point to version 1.0.0. Confirm the Lambda guide is included
+in that tag. Then use the existing `fly.toml` and `Dockerfile` with `fly deploy`.
+The container serves the static `htdocs` directory using `apache.conf`; it does
+not run FastAPI. Keep the previous deployment available for rollback.
 
-- `main.py`: FastAPI application serving API and static files
-- `static/`: Static assets
-  - `index.html`: Main page
-  - `css/styles.css`: Styles
-  - `js/main.js`: Client-side JavaScript
-- `fly.toml`: Fly.io configuration
-- `Dockerfile`: Docker configuration for deployment
-- `requirements.txt`: Python dependencies
-
-## Testing
-
-- Access the homepage at `/`
-- Test the API at `/api`
-- API docs available at `/docs`
+Verify the desktop/mobile navigation, installation copy button, code tabs,
+release links and Lambda documentation link after deployment.
